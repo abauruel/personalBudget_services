@@ -8,6 +8,7 @@ async function listCategory() {
     const categories = await client.category.findMany();
     return { body: categories, status: 200 };
   } catch (error) {
+    console.error(error);
     return AppError(500, 'something was wrong');
   }
 }
