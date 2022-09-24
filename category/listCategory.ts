@@ -9,7 +9,7 @@ async function listCategory() {
     return { body: categories, status: 200 };
   } catch (error) {
     console.log(error);
-    return AppError(500, 'something was wrong');
+    return AppError(500, JSON.stringify(error));
   }
 }
 

@@ -1,5 +1,4 @@
 import { Context, HttpResponse } from '@azure/functions';
-import { PrismaClient } from '@prisma/client';
 import { client } from '../shared/prisma';
 import { AppError } from '../shared/error';
 
@@ -37,7 +36,7 @@ async function createCategory({
     };
   } catch (error) {
     console.log(error);
-    return AppError(500, 'Error to create category');
+    return AppError(500, `${error.message}`);
   }
 }
 
