@@ -36,7 +36,7 @@ async function createCategory({
       body: JSON.stringify(newCategory),
     };
   } catch (error) {
-    console.error(error);
+    console.log(error);
     return AppError(500, 'Error to create category');
   }
 }
