@@ -1,15 +1,17 @@
-import { Context, HttpResponse } from '@azure/functions';
-import { PrismaClient } from '@prisma/client';
 import { AppError } from '../shared/error';
 import { client } from '../shared/prisma';
 
 async function listCategory() {
   try {
-    const categories = await client.category.findMany();
+    const categories = await client.category.findMany({
+      include: {
+        SubCategory: true,
+      },
+    });
     return { body: categories, status: 200 };
   } catch (error) {
     console.log(error);
-    return AppError(500, JSON.stringify(error));
+    return AppError(500, `${error.message}`);
   }
 }
 

@@ -5,8 +5,8 @@ import {
   HttpResponse,
 } from '@azure/functions';
 
-import { createCategory } from './createCategory';
-import { listCategory } from './listCategory';
+import { createSubCategory } from './createSubCategory';
+import { listSubcategoriesByCategory } from './listSubcategoriesByCategory';
 
 const httpTrigger: AzureFunction = async function (
   context: Context,
@@ -14,8 +14,9 @@ const httpTrigger: AzureFunction = async function (
   res: HttpResponse
 ): Promise<HttpResponse> {
   if (req.method === 'POST') {
-    const category = await createCategory({
+    const category = await createSubCategory({
       name: req.body.name,
+      categoryId: Number(req.params.id),
     });
     return (res = {
       body: category.body,
@@ -24,11 +25,13 @@ const httpTrigger: AzureFunction = async function (
   }
 
   if (req.method === 'GET') {
-    const categories = await listCategory();
-    console.log('categories', categories);
+    const subcategories = await listSubcategoriesByCategory({
+      categoryId: Number(req.params.id),
+    });
+    console.log('subcategories', subcategories);
     return (res = {
-      body: categories.body,
-      status: categories.status,
+      body: subcategories.body,
+      status: subcategories.status,
     });
   }
 };

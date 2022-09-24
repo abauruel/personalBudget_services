@@ -5,10 +5,10 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "prestart": "yarn run build",
+    "prestart": "npm run build",
     "start": "func host start --verbose",
     "test": "echo \"No tests yet...\"",
-    "migrate:local": "yarn dotenv -e .env.local -- yarn prisma migrate dev"
+    "migrate:local": "npx dotenv -e .env.local -- npx prisma migrate dev"
   },
   "author": "Alex Claude",
   "dependencies": {

@@ -1,15 +1,13 @@
-import { Context, HttpResponse } from '@azure/functions';
+import { HttpResponse } from '@azure/functions';
 import { client } from '../shared/prisma';
 import { AppError } from '../shared/error';
 
 type createCategoryProps = {
   name: string;
-  context: Context;
 };
 
 async function createCategory({
   name,
-  context,
 }: createCategoryProps): Promise<HttpResponse> {
   try {
     if (!name) {
