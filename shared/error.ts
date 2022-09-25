@@ -12,7 +12,7 @@ type AppErrorProps = {
 function AppError(status = 400, message: string) {
   return {
     status: status,
-    body: message,
+    body: JSON.stringify({ message: message }),
   };
 }
 

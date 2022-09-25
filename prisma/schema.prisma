@@ -31,3 +31,38 @@ model SubCategory {
 
   @@map("subcategories")
 }
+
+model PaymentType {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("paymentTypes")
+}
+
+model Group {
+  id   String @id @default(uuid())
+  name String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  User      User[]
+
+  @@map("goups")
+}
+
+model User {
+  id    String @id @default(uuid())
+  name  String
+  email String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  groupId String
+  group   Group  @relation(fields: [groupId], references: [id])
+
+  @@map("users")
+}
